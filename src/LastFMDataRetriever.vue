@@ -113,9 +113,9 @@ export default {
           this.payload['page'] -= 1
         })
 
-        await this.sleep(250)
+        await this.sleep(350)
       }
-      await this.sleep(250)
+      await this.sleep(350)
       this.finished = true
     },
     makeList(jsonList) {
