@@ -96,7 +96,6 @@ export default {
       })
       .then(response => {
         this.totalPages = parseInt(response.data['recenttracks']['@attr']['totalPages'])
-        this.totalPages = 40
       })
       for (this.payload['page']; this.payload['page'] <= this.totalPages; ++this.payload['page']) {
         console.log(this.payload['page'])
