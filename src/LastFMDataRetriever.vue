@@ -193,7 +193,7 @@ export default {
       const anchor = document.createElement('a');
       anchor.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
       anchor.target = '_blank';
-      anchor.download = this.payload["usermame"] + '_History.csv';
+      anchor.download = this.payload["username"] + '_History.csv';
       anchor.click();
 
       
