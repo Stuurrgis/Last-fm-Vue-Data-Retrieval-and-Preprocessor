@@ -5,6 +5,7 @@
       <div v-if="!entered" id="start" key="1">
         <h1>Welcome to the Last.fm Data Retriever!</h1>
         <h3>Enter Last.fm Username</h3>
+        <p>(If you are here to demo the application, I suggest using Hauser1992 as a username)</p>
         <input v-model= "payload['username']" v-on:keyup.enter="onEnter()"/>
       </div>
       <div v-else-if="entered && !finished" id="processing" key="2">
@@ -97,8 +98,9 @@ export default {
       .then(response => {
         this.totalPages = parseInt(response.data['recenttracks']['@attr']['totalPages'])
       })
+      await this.sleep(300)
       for (this.payload['page']; this.payload['page'] <= this.totalPages; ++this.payload['page']) {
-        console.log(this.payload['page'])
+        //console.log(this.payload['page'])
         axios.get(`http://ws.audioscrobbler.com/2.0/`, {
           params: this.payload,
           headers: this.headers,
@@ -189,11 +191,11 @@ export default {
         }
         csv += '\n'
       }
-      console.log(csv)
+      //console.log(csv)
       const anchor = document.createElement('a');
       anchor.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
       anchor.target = '_blank';
-      anchor.download = this.payload["username"] + '_History.csv';
+      anchor.download = this.payload['username'].concat('_History.csv');
       anchor.click();
 
       
